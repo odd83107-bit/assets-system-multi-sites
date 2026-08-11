@@ -1,12 +1,14 @@
 const express = require('express');
 const { fillForm } = require('./index');
 const { getMappedFields } = require('./configManager');
+const apartmentsRouter = require('./apartments');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MAX_ATTEMPTS = 3;
 
 app.use(express.json());
+app.use('/apartments', apartmentsRouter);
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
