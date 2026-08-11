@@ -1,0 +1,18 @@
+{
+  "yad2": {
+    "address": "#street-input",
+    "rooms": "select[name='rooms']",
+    "price": "#price-input",
+    "description": "textarea[name='description']",
+    "photos": "input[type='file']",
+    "submit": "button[type='submit']"
+  },
+  "madlan": {
+    "address": "#address-input",
+    "rooms": "#rooms-select",
+    "price": "#price-input",
+    "description": "textarea[name='description']",
+    "photos": "input[type='file']",
+    "submit": "button[type='submit']"
+  }
+}
