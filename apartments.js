@@ -67,7 +67,7 @@ router.post('/:id/publish', async (req, res) => {
     res.json({ success: true, message: 'Published', finalUrl });
   } catch (err) {
     setApartmentStatus(apartment.id, 'failed');
-    res.status(500).json({ success: false, error: err.message });
+    res.status(502).json({ success: false, error: err.message });
   }
 });
 

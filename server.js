@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const { fillForm } = require('./index');
 const { getMappedFields } = require('./configManager');
 const apartmentsRouter = require('./apartments');
@@ -7,12 +8,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const MAX_ATTEMPTS = 3;
 
+app.use(cors());
 app.use(express.json());
-app.use('/apartments', apartmentsRouter);
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
+
+app.use('/apartments', apartmentsRouter);
 
 app.post('/publish', async (req, res) => {
   const { targetUrl, platform, formData, config = {} } = req.body;
@@ -54,7 +57,7 @@ app.post('/publish', async (req, res) => {
     }
   }
 
-  res.status(500).json({ success: false, error: lastError.message, attempts: MAX_ATTEMPTS });
+  res.status(502).json({ success: false, error: lastError.message, attempts: MAX_ATTEMPTS });
 });
 
 app.listen(PORT, () => {
